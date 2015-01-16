@@ -2,18 +2,25 @@ extends ../layout
 block content
     .container
         .row
-each item in movies
-.col-md-7
-    embed(src="#{movie.flash}", allowFullScreen="true", quality="high", width="720", height="600", align="middle", type="application/x-shockwave-flash")
-.col-md-5
-    dl.dl-horizontal
-        dt 电影名字
-        dd= movie.title
-        dt 导演
-        dd= movie.director
-        dt 国家
-        dd= movie.country
-        dt 上映年份
-        dd= movie.year
-        dt 简介
-        dd= movie.introduction
+            form.form-horizontal(method="post", action="/admin/movie/new")
+                input(type='hidden', name="movie_[_id]", value="#{movie.title}")
+                .form-group
+                    label.col-sm-3.control-label(for="inputTitle") 电影名字
+                    .col-sm-10
+                        input#inputTitle.form-control(type="text", name="movie[title]", value="#{movie.title}")
+                .form-group
+                    label.col-sm-3.control-label(for="inputDirector") 导演
+                    .col-sm-10
+                        input#inputDirector.form-control(type="text", name="movie[director]", value="#{movie.director}")
+                .form-group
+                    label.col-sm-3.control-label(for="inputCountry") 国家
+                    .col-sm-10
+                        input#inputCountry.form-control(type="text", name="movie[country]", value="#{movie.country}")
+                .form-group
+                    label.col-sm-3.control-label(for="inputYear") 上映年份
+                    .col-sm-10
+                        input#inputYear.form-control(type="text", name="movie[year]", value="#{movie.year}")
+                .form-group
+                    label.col-sm-3.control-label(for="inputIntroduction") 简介
+                    .col-sm-10
+                        input#inputIntroduction.form-control(type="text", name="movie[introduction]", value="#{movie.introduction}")
